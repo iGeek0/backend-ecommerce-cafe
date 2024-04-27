@@ -5,7 +5,8 @@ const {
     userPost,
     userPut,
     userDelete,
-    login
+    login,
+    getProfile
 } = require('../controllers/user.controller');
 
 const authMidd = require('../middleware/authorization');
@@ -19,5 +20,7 @@ router.put('/users', userPut);
 router.delete('/users', userDelete);
 
 router.post('/login', login); //login
+
+router.get('/users/profile', authMidd ,getProfile);
 
 module.exports = router;

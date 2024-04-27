@@ -90,10 +90,22 @@ const login = async (req, res) => {
     }
 }
 
+const getProfile = async (req, res) => {
+    const { id } = req.user;
+    let userRaw = await UserModel.findById(id);
+    // remove password from user for security.
+    usuario.password = "";
+    return res.json({
+        msg: "Entro a profile",
+        data: usuario
+    })
+}
+
 module.exports = {
     userGet,
     userPost,
     userPut,
     userDelete,
-    login
+    login,
+    getProfile
 }

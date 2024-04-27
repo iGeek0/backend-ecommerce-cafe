@@ -3,6 +3,18 @@ const ProductModel = require('../models/product.model');
 
 const productGet = async (req = request, res = response) => {
     try {
+
+        // destructuracion de objetos
+        const { id } = req.query;
+
+        if (id) {
+            const product = await ProductModel.findById(id);
+            res.status(200).json({
+                message: "Data loaded successfully",
+                data: product
+            });
+            return;
+        }
         const products = await ProductModel.find();
         res.status(200).json({
             message: "Data loaded successfully",
